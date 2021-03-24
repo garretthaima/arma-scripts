@@ -11,5 +11,5 @@ steam_path = os.getenv("STEAM_ROOT") #"/games/arma/steamcmd/steamapps/workshop/c
 mod_list = modlist("arma_mods.html")
 
 for mod in mod_list:
-    download_mod(mod[1], root + "/mods")
-    create_symlink(steam_path + mod[1], root + mod[0])
+    download_mod(mod[1], root + "mods")
+    create_symlink(steam_path + mod[1], root + "mods/" + mod[0])
