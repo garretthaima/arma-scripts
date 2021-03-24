@@ -12,4 +12,4 @@ mod_list = modlist("arma_mods.html")
 
 for mod in mod_list:
     download_mod(mod[1], root + "mods")
-    create_symlink(steam_path + mod[1], root + "mods/" + mod[0])
+    create_symlink(steam_path + mod[1], root + "/mods/" + mod[0])
