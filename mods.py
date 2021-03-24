@@ -6,7 +6,7 @@ load_dotenv()
 
 def download_mod(mod_id, path):
     steamcmd = ["steamcmd"]
-    steamcmd.extend(["+login", os.getenv["STEAM_USER"], os.getenv["STEAM_PASS"]])
+    steamcmd.extend(["+login", os.getenv("STEAM_USER"), os.getenv("STEAM_PASS")])
     # steamcmd.extend(["+login", os.environ["STEAM_USER"]])
     # steamcmd.extend(["+force_install_dir", path])
     steamcmd.extend(["+workshop_download_item", "107410 " + mod_id])

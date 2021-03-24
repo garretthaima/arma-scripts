@@ -5,8 +5,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-root = os.getenv["ARMA_ROOT"] # "/games/arma/serverfiles"
-steam_path = os.getenv["STEAM_ROOT"] #"/games/arma/steamcmd/steamapps/workshop/content/107410/"
+root = os.getenv("ARMA_ROOT") # "/games/arma/serverfiles"
+steam_path = os.getenv("STEAM_ROOT") #"/games/arma/steamcmd/steamapps/workshop/content/107410/"
 
 mod_list = modlist("arma_mods.html")
 
