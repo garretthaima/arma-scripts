@@ -15,7 +15,7 @@ def download_mod(mod_id, path):
     subprocess.run(steamcmd)
 
 def create_symlink(source, dest):
-    print("Creating symlink")
+    print("\nCreating symlink" + source + " " + dest + "\n")
     cmd = ["ln"]
     cmd.extend(["-s"])
     cmd.extend([source])
