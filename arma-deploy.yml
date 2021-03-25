@@ -1,0 +1,70 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: arma3-server
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: arma3-server
+  name: arma3-server
+  namespace: arma3-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arma3-server
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: arma3-server
+    spec:
+      containers:
+      - name: arma3-server
+        image: garretthaima/arma3server:v0.5.4
+        imagePullPolicy: "Always"
+        ports:
+        - containerPort: 2302
+        resources: {}
+        env:
+        - name: STEAM_USER
+          value: USERNAME
+        - name: STEAM_PASSWORD
+          value: "PASSWORD"
+        - name: ARMA_ROOT
+          value: "/path/to/arma"
+        - name: STEAM_ROOT
+          value: "/path/to/steamapps"
+        - name: MOD_FILE
+          value: "/arma3/cfg/arma_mods.html"
+        - name: ARMA_CONFIG
+          value: "arma3server.server.cfg"
+        volumeMounts:
+        - mountPath: /arma3/
+          name: arma3-claim0
+      restartPolicy: Always
+      volumes:
+      - name: arma3-claim0
+        persistentVolumeClaim:
+          claimName: arma3-claim0
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: arma3-server
+  name: arma3-server
+  namespace: arma3-server
+spec:
+  ports:
+  - name: "2302"
+    port: 2302
+    targetPort: 2302
+  selector:
+    app: arma3-server
