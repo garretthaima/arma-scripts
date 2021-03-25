@@ -28,6 +28,13 @@ RUN apt-get update \
     && \
     /steamcmd/steamcmd.sh +login anonymous +quit
 
+# Set the locale
+RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
+    locale-gen
+ENV LANG en_US.UTF-8  
+ENV LANGUAGE en_US:en  
+ENV LC_ALL en_US.UTF-8  
+
 ENV ARMA_BINARY=./arma3server
 ENV ARMA_CONFIG=
 ENV ARMA_PROFILE=main
